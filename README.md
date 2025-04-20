@@ -1,50 +1,21 @@
-# autofill-opentools
+# Autofill OpenTools (Internal Use Only)
 
-> ⚠️ **Note:** This project is intended for **internal use only**.
+This project is used internally to automate:
+- Autofilling basic information in forms
+- Launching necessary tools for testing small applications
 
-This repository provides a convenient bookmarklet-based loader that dynamically fetches and executes a JavaScript automation script hosted on GitHub. The main purpose is to **autofill basic information on documentation pages and open testing tools**—saving time and ensuring consistency across sessions.
+> ⚠️ **Note:** This tool is intended for internal use only.
 
----
+## How to Use
 
-## 📁 Files
+Due to security restrictions (Content Security Policy), loading external scripts from GitHub may not work on certain web pages (like Athena).  
+Instead, we use an **inline bookmarklet** approach.
 
-### 🔹 `main_script.js`
+### 1. Copy the Inline Bookmarklet
 
-This is the main script that contains the automation logic. For example, it may:
+- Open `main_script.js`
+- Minify the code using a tool like [https://javascript-minifier.com/](https://javascript-minifier.com/)
+- Wrap the minified code like this:
 
-- Autofill text fields with default values (e.g., name, email).
-- Open developer tools, testing panels, or modals.
-- Perform any custom tasks defined by the user.
-
-Update this file as needed to customize the behavior of the bookmarklet.
-
----
-
-### 🔹 `bookmarklet.js`
-
-This is a **loader script** that can be saved as a browser bookmark. When clicked, it dynamically fetches and executes the content of `main_script.js` directly from GitHub.
-
-#### Structure of the loader:
-
-```javascript
-javascript:(async () => {
-  const rawGithubUrl = 'https://raw.githubusercontent.com/samsononymous/autofill-opentools/main/main_script.js';
-
-  try {
-    const response = await fetch(rawGithubUrl);
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    const jsCode = await response.text();
-
-    const scriptElement = document.createElement('script');
-    scriptElement.textContent = jsCode;
-    document.head.appendChild(scriptElement);
-
-    scriptElement.remove();
-
-  } catch (error) {
-    console.error('Error fetching or executing the script:', error);
-    alert(`Error: ${error.message}`);
-  }
-})();
+```js
+javascript:(function(){/* paste minified main_script.js here */})();
