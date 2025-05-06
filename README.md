@@ -18,4 +18,23 @@ Instead, we use an **inline bookmarklet** approach.
 - Wrap the minified code like this:
 
 ```js
-javascript:(function(){/* paste minified main_script.js here */})();
+javascript:/* paste minified main_script.js here */
+
+------
+
+## 🧩 Google Apps Script
+
+This repository includes a reference Google Apps Script.
+
+You can use this script as a starting point to deploy your own version of the backend logic in [Google Apps Script](https://script.google.com). This is particularly helpful if you want to handle the form data or automate tasks based on the autofilled fields.
+
+### How to Use
+
+1. Go to [https://script.google.com](https://script.google.com).
+2. Create a new project.
+3. Copy the contents of `appscript codes` into the project.
+4. Apply some modification depending on your own needs.
+5. Deploy as a web app if needed (e.g., for form handling or triggers).
+
+> **Note:** This project is for internal use and should be customized depending on your workflow.
+
